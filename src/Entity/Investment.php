@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\InvestmentRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: InvestmentRepository::class)]
 class Investment
 {
+
+    use CreatedAtTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -20,6 +25,14 @@ class Investment
     #[ORM\ManyToOne(inversedBy: 'All_Business_Investments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Business $Business = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 3)]
+    private ?string $Amount = null;
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -46,6 +59,18 @@ class Investment
     public function setBusiness(?Business $Business): static
     {
         $this->Business = $Business;
+
+        return $this;
+    }
+
+    public function getAmount(): ?string
+    {
+        return $this->Amount;
+    }
+
+    public function setAmount(string $Amount): static
+    {
+        $this->Amount = $Amount;
 
         return $this;
     }

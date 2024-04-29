@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\BusinessRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: BusinessRepository::class)]
 class Business
 {
+    use CreatedAtTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -41,9 +44,16 @@ class Business
     #[ORM\OneToMany(targetEntity: Investment::class, mappedBy: 'Business')]
     private Collection $All_Business_Investments;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Sector::class, inversedBy="business")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private ?Sector $sector;
+
     public function __construct()
     {
         $this->All_Business_Investments = new ArrayCollection();
+        $this->created_at = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -75,14 +85,14 @@ class Business
         return $this;
     }
 
-    public function getSector(): ?string
+    public function getSector(): ?Sector
     {
-        return $this->Sector;
+        return $this->sector;
     }
 
-    public function setSector(string $Sector): static
+    public function setSector(?Sector $sector): self
     {
-        $this->Sector = $Sector;
+        $this->sector = $sector;
 
         return $this;
     }

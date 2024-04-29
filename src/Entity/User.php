@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,6 +15,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
+    use CreatedAtTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -34,17 +38,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isActive = true;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $created_at;
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $connected_at;
-
-    #[ORM\Column(length: 128)]
-    private ?string $firstName = null;
-
-    #[ORM\Column(length: 128)]
-    private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
     private ?string $username = null;
@@ -66,7 +59,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->connected_at = new \DateTimeImmutable();
         $this->created_at = new \DateTimeImmutable();
         $this->AllBusinesses = new ArrayCollection();
         $this->AllInvestments = new ArrayCollection();
@@ -154,53 +146,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $created_at): static
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    public function getConnectedAt(): ?\DateTimeImmutable
-    {
-        return $this->connected_at;
-    }
-
-    public function setConnectedAt(\DateTimeImmutable $connected_at): static
-    {
-        $this->connected_at = $connected_at;
-
-        return $this;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): static
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): static
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
 
     public function getUsername(): ?string
     {
@@ -214,11 +159,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
     public function __toString(): string
     {
         return $this->getUsername();
     }
+
     public function jsonSerialize(): array
     {
         return [
@@ -227,9 +172,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             'roles' => $this->getRoles(),
             'isActive' => $this->isIsActive(),
             'createdAt' => $this->getCreatedAt(),
-            'connectedAt' => $this->getConnectedAt(),
-            'firstName' => $this->getFirstName(),
-            'lastName' => $this->getLastName(),
             'username' => $this->getUsername(),
         ];
     }
@@ -251,64 +193,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Business>
-     */
-    public function getAllBusinesses(): Collection
-    {
-        return $this->AllBusinesses;
-    }
-
-    public function addAllBusiness(Business $allBusiness): static
-    {
-        if (!$this->AllBusinesses->contains($allBusiness)) {
-            $this->AllBusinesses->add($allBusiness);
-            $allBusiness->setOwner($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAllBusiness(Business $allBusiness): static
-    {
-        if ($this->AllBusinesses->removeElement($allBusiness)) {
-            // set the owning side to null (unless already changed)
-            if ($allBusiness->getOwner() === $this) {
-                $allBusiness->setOwner(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Investment>
-     */
-    public function getAllInvestments(): Collection
-    {
-        return $this->AllInvestments;
-    }
-
-    public function addAllInvestment(Investment $allInvestment): static
-    {
-        if (!$this->AllInvestments->contains($allInvestment)) {
-            $this->AllInvestments->add($allInvestment);
-            $allInvestment->setInvestor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAllInvestment(Investment $allInvestment): static
-    {
-        if ($this->AllInvestments->removeElement($allInvestment)) {
-            // set the owning side to null (unless already changed)
-            if ($allInvestment->getInvestor() === $this) {
-                $allInvestment->setInvestor(null);
-            }
-        }
-
-        return $this;
-    }
-
+   
 }
