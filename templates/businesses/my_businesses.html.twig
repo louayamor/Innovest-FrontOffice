@@ -1,0 +1,27 @@
+{# templates/businesses/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Businesses List{% endblock %}
+
+{% block body %}
+    <h1>My Businesses</h1>
+    <div class="business-card-container">
+        {% for business in businesses %}
+            <div class="business-card">
+                <h5>{{ business.Name }}</h5>
+                <p>{{ business.Description }}</p>
+                <p>{{ business.Sector }}</p>
+                <p>Revenue: {{ business.Revenue }}</p>
+                <p>Profit: {{ business.Profit }}</p>
+                <div class="card-buttons">
+                    <a href="{{ path('app_business_details', {'id': business.id}) }}" class="btn btn-primary">Details</a>
+                    <a href="{{ path('app_delete_business', {'id': business.id}) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this business?')">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+        <a href="{{ path('app_add_business') }}" class="btn btn-success">Add New Business</a>
+    </div>
+{% endblock %}

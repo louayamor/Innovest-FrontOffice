@@ -44,24 +44,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
-
-    /**
-     * @var Collection<int, Business>
-     */
-    #[ORM\OneToMany(targetEntity: Business::class, mappedBy: 'Owner')]
-    private Collection $AllBusinesses;
-
-    /**
+/** 
      * @var Collection<int, Investment>
      */
     #[ORM\OneToMany(targetEntity: Investment::class, mappedBy: 'Investor')]
     private Collection $AllInvestments;
 
+    /**
+     * @var Collection<int, Business>
+     */
+    #[ORM\OneToMany(targetEntity: Business::class, mappedBy: 'Owner')]
+    private Collection $businesses;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
-        $this->AllBusinesses = new ArrayCollection();
+        //$this->AllBusinesses = new ArrayCollection();
         $this->AllInvestments = new ArrayCollection();
+        $this->businesses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,6 +189,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Business>
+     */
+    public function getBusinesses(): Collection
+    {
+        return $this->businesses;
+    }
+
+    public function addBusiness(Business $business): static
+    {
+        if (!$this->businesses->contains($business)) {
+            $this->businesses->add($business);
+            $business->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBusiness(Business $business): static
+    {
+        if ($this->businesses->removeElement($business)) {
+            // set the owning side to null (unless already changed)
+            if ($business->getOwner() === $this) {
+                $business->setOwner(null);
+            }
+        }
 
         return $this;
     }

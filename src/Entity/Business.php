@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\BusinessRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Trait\CreatedAtTrait;
 
 #[ORM\Entity(repositoryClass: BusinessRepository::class)]
 class Business
 {
+
     use CreatedAtTrait;
 
     #[ORM\Id]
@@ -25,34 +24,24 @@ class Business
     #[ORM\Column(type: Types::TEXT)]
     private ?string $Description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Sector = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
+    private ?string $revenue = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $Revenue = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
     private ?string $Profit = null;
 
-    #[ORM\ManyToOne(inversedBy: 'AllBusinesses')]
+    #[ORM\Column(length: 255)]
+    private ?string $sector = null;
+
+    #[ORM\ManyToOne(inversedBy: 'businesses')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $Owner = null;
 
-    /**
-     * @var Collection<int, Investment>
-     */
-    #[ORM\OneToMany(targetEntity: Investment::class, mappedBy: 'Business')]
-    private Collection $All_Business_Investments;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Sector::class, inversedBy="business")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private ?Sector $sector;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Country = null;
 
     public function __construct()
     {
-        $this->All_Business_Investments = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
     }
 
@@ -85,26 +74,14 @@ class Business
         return $this;
     }
 
-    public function getSector(): ?Sector
-    {
-        return $this->sector;
-    }
-
-    public function setSector(?Sector $sector): self
-    {
-        $this->sector = $sector;
-
-        return $this;
-    }
-
     public function getRevenue(): ?string
     {
-        return $this->Revenue;
+        return $this->revenue;
     }
 
-    public function setRevenue(string $Revenue): static
+    public function setRevenue(string $revenue): static
     {
-        $this->Revenue = $Revenue;
+        $this->revenue = $revenue;
 
         return $this;
     }
@@ -121,6 +98,18 @@ class Business
         return $this;
     }
 
+    public function getSector(): ?string
+    {
+        return $this->sector;
+    }
+
+    public function setSector(string $sector): static
+    {
+        $this->sector = $sector;
+
+        return $this;
+    }
+
     public function getOwner(): ?User
     {
         return $this->Owner;
@@ -133,32 +122,14 @@ class Business
         return $this;
     }
 
-    /**
-     * @return Collection<int, Investment>
-     */
-    public function getAllBusinessInvestments(): Collection
+    public function getCountry(): ?string
     {
-        return $this->All_Business_Investments;
+        return $this->Country;
     }
 
-    public function addAllBusinessInvestment(Investment $allBusinessInvestment): static
+    public function setCountry(?string $Country): static
     {
-        if (!$this->All_Business_Investments->contains($allBusinessInvestment)) {
-            $this->All_Business_Investments->add($allBusinessInvestment);
-            $allBusinessInvestment->setBusiness($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAllBusinessInvestment(Investment $allBusinessInvestment): static
-    {
-        if ($this->All_Business_Investments->removeElement($allBusinessInvestment)) {
-            // set the owning side to null (unless already changed)
-            if ($allBusinessInvestment->getBusiness() === $this) {
-                $allBusinessInvestment->setBusiness(null);
-            }
-        }
+        $this->Country = $Country;
 
         return $this;
     }

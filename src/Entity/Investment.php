@@ -22,9 +22,11 @@ class Investment
     #[ORM\JoinColumn(nullable: false)]
     private ?User $Investor = null;
 
-    #[ORM\ManyToOne(inversedBy: 'All_Business_Investments')]
+  #[ORM\ManyToOne(inversedBy: 'All_Business_Investments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Business $Business = null;
+
+    
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 3)]
     private ?string $Amount = null;
@@ -50,7 +52,7 @@ class Investment
 
         return $this;
     }
-
+ 
     public function getBusiness(): ?Business
     {
         return $this->Business;

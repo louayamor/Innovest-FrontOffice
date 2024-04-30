@@ -2,7 +2,13 @@
 
 {% block title %}Register{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/auth/register.css') }}">
+{% endblock %}
+
 {% block body %}
+<div class="wrapper">
     <section class="container">
         <div class="row">
             <div class="col">
@@ -12,12 +18,22 @@
                 {{ form_errors(registrationForm) }}
 
                 {{ form_start(registrationForm) }}
-                    {{ form_row(registrationForm.username) }}
-                    {{ form_row(registrationForm.email) }}
-                    {{ form_row(registrationForm.plainPassword, {
-                        label: 'Password'
-                    }) }}
-                    {{ form_row(registrationForm.agreeTerms) }}
+                    <div class="input-box">
+                        <label for="{{ registrationForm.username.vars.id }}">Username</label>
+                        {{ form_widget(registrationForm.username) }}
+                    </div>
+                    <div class="input-box">
+                        <label for="{{ registrationForm.email.vars.id }}">Email</label>
+                        {{ form_widget(registrationForm.email) }}
+                    </div>
+                    <div class="input-box">
+                        <label for="{{ registrationForm.plainPassword.vars.id }}">Password</label>
+                        {{ form_widget(registrationForm.plainPassword) }}
+                    </div>
+                    <div class="input-box">
+                        <label for="{{ registrationForm.agreeTerms.vars.id }}">Agree to Terms</label>
+                        {{ form_widget(registrationForm.agreeTerms) }}
+                    </div>
 
                     <button type="submit" class="btn">Register</button>
                 {{ form_end(registrationForm) }}
@@ -25,5 +41,5 @@
             </div>
         </div>
     </section>
-    
+</div>
 {% endblock %}

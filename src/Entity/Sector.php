@@ -18,15 +18,10 @@ class Sector
     #[ORM\Column(length: 255)]
     private ?string $SectorName = null;
 
-    /**
-     * @var Collection<int, Business>
-     */
-    #[ORM\OneToMany(targetEntity: Business::class, mappedBy: 'sector',fetch: 'EAGER')]
-    private Collection $business;
+    
 
     public function __construct()
     {
-        $this->business = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,33 +41,4 @@ class Sector
         return $this;
     }
 
-    /**
-     * @return Collection<int, Business>
-     */
-    public function getBusiness(): Collection
-    {
-        return $this->business;
-    }
-
-    public function addBusiness(Business $business): static
-    {
-        if (!$this->business->contains($business)) {
-            $this->business->add($business);
-            $business->setSector($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBusiness(Business $business): static
-    {
-        if ($this->business->removeElement($business)) {
-            // set the owning side to null (unless already changed)
-            if ($business->getSector() === $this) {
-                $business->setSector(null);
-            }
-        }
-
-        return $this;
-    }
 }

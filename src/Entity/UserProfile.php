@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserProfileRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserProfileRepository::class)]
@@ -27,6 +28,15 @@ class UserProfile
 
     #[ORM\Column(length: 255)]
     private ?string $Country = null;
+
+    #[ORM\Column(type: Types::BLOB, nullable: true)]
+    private $ProfileImage = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $Gender = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $Bio = null;
 
     public function getId(): ?int
     {
@@ -89,6 +99,42 @@ class UserProfile
     public function setCountry(string $Country): static
     {
         $this->Country = $Country;
+
+        return $this;
+    }
+
+    public function getProfileImage()
+    {
+        return $this->ProfileImage;
+    }
+
+    public function setProfileImage($ProfileImage): static
+    {
+        $this->ProfileImage = $ProfileImage;
+
+        return $this;
+    }
+
+    public function getGender(): ?int
+    {
+        return $this->Gender;
+    }
+
+    public function setGender(?int $Gender): static
+    {
+        $this->Gender = $Gender;
+
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->Bio;
+    }
+
+    public function setBio(?string $Bio): static
+    {
+        $this->Bio = $Bio;
 
         return $this;
     }

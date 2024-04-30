@@ -1,0 +1,54 @@
+{# business_form.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Add your business{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form_container">
+                    <h1>Add Business</h1>
+                    {{ form_start(form) }}
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            {{ form_widget(form.Name, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="form-label">Description</label>
+                            {{ form_widget(form.Description, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sector" class="form-label">Sector</label>
+                            {# Render dropdown menu for sector #}
+                            <select name="business[Sector]" id="sector" class="form-control">
+                                {% for sector in sectors %}
+                                    <option value="{{ sector.id }}">{{ sector.SectorName }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="country" class="form-label">Country</label>
+                            {{ form_row(form.Country, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                         
+                        <div class="form-group">
+                            <label for="revenue" class="form-label">Revenue</label>
+                            {{ form_widget(form.Revenue, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="profit" class="form-label">Profit</label>
+                            {{ form_widget(form.Profit, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

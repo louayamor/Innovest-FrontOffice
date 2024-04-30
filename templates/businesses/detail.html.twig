@@ -1,0 +1,20 @@
+{# templates/businesses/detail.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Business Details{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Business Details</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ business.Name }}</h5>
+                <p class="card-text"><strong>Description:</strong> {{ business.Description }}</p>
+                <p class="card-text"><strong>Sector:</strong> {{ business.Sector }}</p>
+                <p class="card-text"><strong>Revenue:</strong> {{ business.Revenue }}</p>
+                <p class="card-text"><strong>Profit:</strong> {{ business.Profit }}</p>
+                <p class="card-text"><strong>Owner:</strong> {{ business.Owner.username }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
