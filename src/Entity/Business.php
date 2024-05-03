@@ -40,6 +40,9 @@ class Business
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Country = null;
 
+    #[ORM\Column(type: Types::BLOB, nullable: true)]
+    private $ImageBlob = null;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -130,6 +133,18 @@ class Business
     public function setCountry(?string $Country): static
     {
         $this->Country = $Country;
+
+        return $this;
+    }
+
+    public function getImageBlob()
+    {
+        return $this->ImageBlob;
+    }
+
+    public function setImageBlob($ImageBlob): static
+    {
+        $this->ImageBlob = $ImageBlob;
 
         return $this;
     }

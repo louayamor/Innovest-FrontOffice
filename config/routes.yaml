@@ -4,8 +4,40 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+wrapper:
+    path: /
+    controller: App\Controller\WrapperController::index
+    methods: GET
+
+app_home:
+    path: /home
+    controller: App\Controller\HomeController::index
+    methods: GET
+
 profile_complete:
     path: /profile/complete
     controller: App\Controller\ProfileController::completeProfile
     methods: ['GET', 'POST']
+
+app_business_image:
+    path: '/business/{id}/image'
+    controller: 'App\Controller\BusinessController::showImage'
+    methods: ['GET']
+
+news_top_headlines:
+    path: /news_api/top-headlines
+    controller: App\Controller\NewsApiController::getTopHeadlines
+    methods: GET
+
+news_everything:
+    path: /news_api/everything
+    controller: App\Controller\NewsApiController::getEverything
+    methods: GET
+
+news_sources:
+    path: /news_api/sources
+    controller: App\Controller\NewsApiController::getSources
+    methods: GET
+
+
 

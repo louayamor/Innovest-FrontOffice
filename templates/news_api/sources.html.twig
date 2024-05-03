@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Business News Sources{% endblock %}
+
+{% block body %}
+    <h1>Business News Sources</h1>
+    {% if sources %}
+        <div class="sources-container">
+            {% for source in sources %}
+                <div class="source-card">
+                    <h2>{{ source.name }}</h2>
+                    <p>{{ source.description }}</p>
+                    <p><strong>Category:</strong> {{ source.category }}</p>
+                    <p><strong>Language:</strong> {{ source.language }}</p>
+                    <p><strong>Country:</strong> {{ source.country }}</p>
+                    <a href="{{ source.url }}" target="_blank" class="btn btn-primary">Visit Website</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No business news sources found.</p>
+    {% endif %}
+{% endblock %}

@@ -69,7 +69,7 @@ class UserProfileType extends AbstractType
                             'image/jpeg',
                             'image/png',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid JPEG or PNG image.', // Custom error message
+                        'mimeTypesMessage' => 'Please upload a valid JPEG or PNG image.', 
                     ]),
                 ],
             ])

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\InvestmentType;
 use App\Entity\Investment;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,6 +52,12 @@ class InvestmentController extends AbstractController
             $entityManager = $this->entityManager;
             $entityManager->persist($investment);
             $entityManager->flush();
+
+            if ($user instanceof User) {
+                $user->setIsInvestor(true);
+                $entityManager->persist($user);
+                $entityManager->flush();
+            }
 
             $this->addFlash('success', 'Investment successful!');
             return $this->redirectToRoute('app_home');

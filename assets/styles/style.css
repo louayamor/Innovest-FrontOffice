@@ -981,4 +981,27 @@ a:focus {
   height: auto;
 }
 
+.business-card img {
+  max-width: 200px; 
+  height: auto; 
+}
+
+.resizable-image {
+  max-width: 20%; 
+  height: auto; 
+}
+
+.carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(255, 255, 255, 0.8); /* Adjust the background color as needed */
+        border-radius: 50%;
+        padding: 5px; /* Adjust the padding as needed */
+        color: #333; /* Adjust the color of the arrows as needed */
+    }
+
+    .carousel-control-prev-icon:hover,
+    .carousel-control-next-icon:hover {
+        background-color: rgba(255, 255, 255, 1);
+    }
+
 /*# sourceMappingURL=style.css.map */

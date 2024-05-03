@@ -44,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isInvestor = false;
 /** 
      * @var Collection<int, Investment>
      */
@@ -193,6 +196,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function isInvestor(): bool
+    {
+        return $this->isInvestor;
+    }
+
+    public function setIsInvestor(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Business>
      */
@@ -222,5 +237,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-   
 }

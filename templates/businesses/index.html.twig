@@ -1,20 +1,29 @@
-{# templates/businesses/index.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Businesses List{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/business.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Businesses List</h1>
-    <div class="business-card-container">
-        {% for business in businesses %}
-            <div class="business-card">
-                <h2>{{ business.Name }}</h2>
-                <p>{{ business.Description }}</p>
-                <p>{{ business.Sector }}</p>
-                <p>Revenue: {{ business.Revenue }}</p>
-                <p>Profit: {{ business.Profit }}</p>
-            </div>
-        {% endfor %}
+    <div class="container">
+        <h1>Businesses List</h1>
+        <div class="business-card-container">
+            {% for business in businesses %}
+                <div class="business-card">
+                    {% if business.imageBlob is not null %}
+                        <img src="{{ path('app_business_image', {'id': business.id}) }}" alt="Business Image">
+                    {% else %}
+                        <img src="{{ asset('images/company.jpg') }}" alt="Default Image">
+                    {% endif %}
+                    <h2>{{ business.Name }}</h2>
+                    <p>{{ business.Description }}</p>
+                    <p>{{ business.Sector }}</p>
+
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

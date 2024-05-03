@@ -21,16 +21,6 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="sector" class="form-label">Sector</label>
-                            {# Render dropdown menu for sector #}
-                            <select name="business[Sector]" id="sector" class="form-control">
-                                {% for sector in sectors %}
-                                    <option value="{{ sector.id }}">{{ sector.SectorName }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
                             <label for="country" class="form-label">Country</label>
                             {{ form_row(form.Country, {'attr': {'class': 'form-control'}}) }}
                         </div>
@@ -43,6 +33,12 @@
                             <label for="profit" class="form-label">Profit</label>
                             {{ form_widget(form.Profit, {'attr': {'class': 'form-control'}}) }}
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="imageBlob" class="form-label">Business Image</label>
+                            {{ form_widget(form.ImageBlob, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>

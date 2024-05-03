@@ -3,22 +3,37 @@
 
 {% block title %}Business Details{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/business.css') }}">
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <h1>Business Details</h1>
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ business.Name }}</h5>
-                <p class="card-text"><strong>Owner:</strong> {{ business.Owner.username }}</p>
-                <p class="card-text"><strong>Description:</strong> {{ business.Description }}</p>
-                <p class="card-text"><strong>Sector:</strong> {{ business.Sector }}</p>
-                <p class="card-text"><strong>Revenue:</strong> {{ business.Revenue }}</p>
-                <p class="card-text"><strong>Profit:</strong> {{ business.Profit }}</p>
-                
-                
-                <p class="card-text">Invest in this business</p>
-                <a href="{{ path('add_investment', {'Id': business.id}) }}" class="btn btn-primary">Invest</a>
-            </div>
+            {% if business.imageBlob is not null %}
+                <img src="{{ path('app_business_image', {'id': business.id}) }}" alt="Business Image" class="resizable-image">
+            {% else %}
+                <img src="{{ asset('images/company.jpg') }}" alt="Default Image" class="resizable-image">
+            {% endif %}
+            <h5 class="card-title text-primary">{{ business.Name }}</h5> <!-- Bigger and colored business name -->
+            <p class="card-text"><strong>Owner:</strong> {{ business.Owner.username }}</p>
+            <p class="card-text"><strong>Description:</strong> {{ business.Description }}</p>
+            <p class="card-text"><strong>Sector:</strong> {{ business.Sector }}</p>
+            <p class="card-text"><strong>Revenue:</strong> {{ business.Revenue }}</p>
+            <p class="card-text"><strong>Profit:</strong> {{ business.Profit }}</p>
+            <p class="card-text"><strong>Country:</strong> {{ business.Country }}</p>
+            {% if business.createdAt is defined %}
+                <p class="card-text"><strong>Date added:</strong> {{ business.createdAt|date('Y-m-d H:i:s') }}</p>
+            {% else %}
+                <p class="card-text"><strong>Date added:</strong> Not available</p>
+            {% endif %}
+        </div>
+        
+        <div class="invest-section">
+            <p class="invest-text">Invest in this business</p>
+            <a href="{{ path('add_investment', {'Id': business.id}) }}" class="btn btn-primary invest-button">Invest</a>
         </div>
     </div>
 {% endblock %}
