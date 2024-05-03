@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
-class ProfileController extends AbstractController
+class UserProfileController extends AbstractController
 {
     private $entityManager;
 
@@ -44,6 +44,7 @@ class ProfileController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+        $userProfile->setUser($this->getUser());
         $entityManager = $this->entityManager;
         $entityManager->persist($userProfile);
         $entityManager->flush();

@@ -39,10 +39,7 @@ class UserProfileType extends AbstractType
             ->add('PhoneNumber', IntegerType::class, [
                 'required' => false,
                 'constraints' => [
-                    new Regex([
-                        'pattern' => '/^\d{10}$/', 
-                        'message' => 'Please enter a valid phone number.', 
-                    ]),
+                    
                 ],
             ])
             ->add('Age', IntegerType::class, [
@@ -64,7 +61,6 @@ class UserProfileType extends AbstractType
                 'required' => false,
                 'constraints' => [  
                     new File([
-                        'maxSize' => '1024k',
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png',
