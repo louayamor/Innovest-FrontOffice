@@ -82,10 +82,12 @@ class BusinessesController extends AbstractController
     }
 
     #[Route('/business/{id}', name: 'app_business_details', methods: ['GET'])]
-    public function businessDetails($id): Response
+    public function businessDetails(Request $request,$id): Response
     {
-        // Fetch the business from the database using $id
+        $request->getSession()->set('current_business_id', $id);
         $business = $this->entityManager->getRepository(Business::class)->find($id);
+
+        
 
         if (!$business) {
             throw $this->createNotFoundException('Business not found');

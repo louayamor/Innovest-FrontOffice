@@ -9,11 +9,15 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ business.Name }}</h5>
+                <p class="card-text"><strong>Owner:</strong> {{ business.Owner.username }}</p>
                 <p class="card-text"><strong>Description:</strong> {{ business.Description }}</p>
                 <p class="card-text"><strong>Sector:</strong> {{ business.Sector }}</p>
                 <p class="card-text"><strong>Revenue:</strong> {{ business.Revenue }}</p>
                 <p class="card-text"><strong>Profit:</strong> {{ business.Profit }}</p>
-                <p class="card-text"><strong>Owner:</strong> {{ business.Owner.username }}</p>
+                
+                
+                <p class="card-text">Invest in this business</p>
+                <a href="{{ path('add_investment', {'Id': business.id}) }}" class="btn btn-primary">Invest</a>
             </div>
         </div>
     </div>

@@ -214,7 +214,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeBusiness(Business $business): static
     {
         if ($this->businesses->removeElement($business)) {
-            // set the owning side to null (unless already changed)
             if ($business->getOwner() === $this) {
                 $business->setOwner(null);
             }

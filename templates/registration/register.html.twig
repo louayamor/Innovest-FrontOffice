@@ -1,9 +1,4 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Register{% endblock %}
-
 {% block stylesheets %}
-    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('styles/auth/register.css') }}">
 {% endblock %}
 
@@ -13,7 +8,7 @@
         <div class="row">
             <div class="col">
 
-                <h1>Register</h1>
+                <h1 class="register-title">Become an Innovestor !</h1> 
 
                 {{ form_errors(registrationForm) }}
 
@@ -30,14 +25,19 @@
                         <label for="{{ registrationForm.plainPassword.vars.id }}">Password</label>
                         {{ form_widget(registrationForm.plainPassword) }}
                     </div>
-                    <div class="input-box">
+                    <div class="input-box agree-terms">
                         <label for="{{ registrationForm.agreeTerms.vars.id }}">Agree to Terms</label>
-                        {{ form_widget(registrationForm.agreeTerms) }}
+                        <div class="checkbox">
+                            {{ form_widget(registrationForm.agreeTerms) }}
+                            <span>I agree to the terms and conditions</span>
+                        </div>
                     </div>
-
-                    <button type="submit" class="btn">Register</button>
+                    <button type="submit" class="btn btn-primary">Register</button> <!-- Added btn-primary class -->
                 {{ form_end(registrationForm) }}
 
+                <div class="login-link">
+                    <p>Already have an account? <a href="{{ path('app_login') }}">Sign in</a></p>
+                </div>
             </div>
         </div>
     </section>

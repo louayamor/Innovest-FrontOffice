@@ -1,0 +1,78 @@
+body {
+    background: #eee;
+}
+
+.card {
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.card:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #2196F3; /* Primary color */
+    transform: scaleY(1);
+    transition: all 0.5s;
+    transform-origin: bottom;
+}
+
+.card:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #1E88E5; /* Secondary color */
+    transform: scaleY(0);
+    transition: all 0.5s;
+    transform-origin: bottom;
+}
+
+.card:hover::after {
+    transform: scaleY(1);
+}
+
+.fonts {
+    font-size: 11px;
+}
+
+.social-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+}
+
+.social-list li {
+    padding: 10px;
+    color: #2196F3; /* Primary color */
+    font-size: 19px;
+}
+
+.buttons button:nth-child(1) {
+    border: 1px solid #2196F3 !important; /* Primary color */
+    color: #2196F3; /* Primary color */
+    height: 40px;
+}
+
+.buttons button:nth-child(1):hover {
+    border: 1px solid #2196F3 !important; /* Primary color */
+    color: #fff;
+    height: 40px;
+    background-color: #2196F3; /* Primary color */
+}
+
+.buttons button:nth-child(2) {
+    border: 1px solid #2196F3 !important; /* Primary color */
+    background-color: #2196F3; /* Primary color */
+    color: #fff;
+    height: 40px;
+}

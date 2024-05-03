@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Complete Profile{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Complete Your Profile</h1>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_label(form.FirstName) }}
+                    {{ form_widget(form.FirstName, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.LastName) }}
+                    {{ form_widget(form.LastName, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.PhoneNumber) }}
+                    {{ form_widget(form.PhoneNumber, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.Age) }}
+                    {{ form_widget(form.Age, {'attr': {'class': 'form-control js-datepicker'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.Country) }}
+                    {{ form_widget(form.Country, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.ProfileImage) }}
+                    {{ form_widget(form.ProfileImage, {'attr': {'class': 'form-control-file'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.Gender) }}
+                    {{ form_widget(form.Gender) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.Bio) }}
+                    {{ form_widget(form.Bio, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                {{ form_end(form) }}
+                <a href="{{ path('app_home') }}" class="btn btn-secondary mt-3">Skip</a>
+            </div>
+            <div class="col-md-6">
+                <!-- Image aligned to the right -->
+                <div class="image-wrapper text-right">
+                    <img src="{{ asset('/images/invest.jpg') }}" alt="Invest Image">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

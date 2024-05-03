@@ -1,0 +1,21 @@
+{# templates/investment/add.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Investment{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Add Investment</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="{{ path('add_investment', {'Id': business.id}) }}" method="POST">
+                    {{ form_start(form) }}
+                    {{ form_row(form.Amount, {'attr': {'placeholder': 'Enter amount', 'class': 'form-control'}}) }}
+                    {{ form_row(form.Comment, {'attr': {'placeholder': 'Enter comment', 'class': 'form-control'}}) }}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    {{ form_end(form) }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

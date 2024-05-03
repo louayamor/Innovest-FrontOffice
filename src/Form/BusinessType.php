@@ -23,7 +23,7 @@ class BusinessType extends AbstractType
                 'required' => true, 
             ])
             ->add('Country', ChoiceType::class, [
-                'choices' => $options['countries'] ?: [], // Use empty array if countries is null
+                'choices' => $options['countries'] ?: [], 
                 'placeholder' => 'Select a country',
                 'choice_label' => function ($value) {
                     return $value;

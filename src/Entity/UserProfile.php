@@ -26,17 +26,20 @@ class UserProfile
     #[ORM\Column(nullable: true)]
     private ?int $Age = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Country = null;
 
     #[ORM\Column(type: Types::BLOB, nullable: true)]
     private $ProfileImage = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $Gender = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Bio = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $PhoneNumber = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Gender = null;
 
     public function getId(): ?int
     {
@@ -115,18 +118,6 @@ class UserProfile
         return $this;
     }
 
-    public function getGender(): ?int
-    {
-        return $this->Gender;
-    }
-
-    public function setGender(?int $Gender): static
-    {
-        $this->Gender = $Gender;
-
-        return $this;
-    }
-
     public function getBio(): ?string
     {
         return $this->Bio;
@@ -135,6 +126,30 @@ class UserProfile
     public function setBio(?string $Bio): static
     {
         $this->Bio = $Bio;
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?int
+    {
+        return $this->PhoneNumber;
+    }
+
+    public function setPhoneNumber(?int $PhoneNumber): static
+    {
+        $this->PhoneNumber = $PhoneNumber;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->Gender;
+    }
+
+    public function setGender(?string $Gender): static
+    {
+        $this->Gender = $Gender;
 
         return $this;
     }

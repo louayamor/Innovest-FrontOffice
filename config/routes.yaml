@@ -3,3 +3,9 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+profile_complete:
+    path: /profile/complete
+    controller: App\Controller\ProfileController::completeProfile
+    methods: ['GET', 'POST']
+

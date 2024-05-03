@@ -225,6 +225,8 @@ a:focus {
           align-items: center;
   position: relative;
   background-color: #f9fafa;
+  background-color: #f8f9fa;
+    padding: 50px 0;
 }
 
 .slider_section .row {
@@ -884,6 +886,8 @@ a:focus {
   border-radius: 5px;
   padding: 10px;
   outline: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .btn-primary {
@@ -933,6 +937,48 @@ a:focus {
   margin-bottom: 5px;
 }
 
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
+.carousel-item {
+  text-align: center;
+}
+
+.carousel-item .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.carousel-item h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.carousel-item p {
+  font-size: 18px;
+  color: #6c757d;
+  margin-bottom: 30px;
+}
+
+.btn-box {
+  margin-top: 20px;
+}
+
+.btn-box a {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.img-box img {
+  max-width: 100%;
+  height: auto;
+}
 
 /*# sourceMappingURL=style.css.map */

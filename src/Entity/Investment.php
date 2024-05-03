@@ -22,7 +22,7 @@ class Investment
     #[ORM\JoinColumn(nullable: false)]
     private ?User $Investor = null;
 
-  #[ORM\ManyToOne(inversedBy: 'All_Business_Investments')]
+    #[ORM\ManyToOne(inversedBy: 'All_Business_Investments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Business $Business = null;
 
@@ -30,6 +30,9 @@ class Investment
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 3)]
     private ?string $Amount = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $comment = null;
 
     public function __construct()
     {
@@ -73,6 +76,18 @@ class Investment
     public function setAmount(string $Amount): static
     {
         $this->Amount = $Amount;
+
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(string $comment): static
+    {
+        $this->comment = $comment;
 
         return $this;
     }
