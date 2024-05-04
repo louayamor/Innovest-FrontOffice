@@ -7,6 +7,8 @@ The project structure is organized as follows:
 config/: Contains configuration files for Symfony.
 public/: Publicly accessible directory containing the entry point (index.php) and assets.
 src/: Contains PHP source code for the project.
+
+
 Controller/: Controllers handling web requests.
 Entity/: Entity classes representing database tables.
 Form/: Form classes for data validation and handling.
