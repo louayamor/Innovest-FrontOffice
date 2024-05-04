@@ -87,12 +87,6 @@ class BusinessesController extends AbstractController
         $request->getSession()->set('current_business_id', $id);
         $business = $this->entityManager->getRepository(Business::class)->find($id);
 
-        
-
-        if (!$business) {
-            throw $this->createNotFoundException('Business not found');
-        }
-
         return $this->render('businesses/detail.html.twig', [
             'business' => $business,
         ]);
@@ -104,7 +98,6 @@ class BusinessesController extends AbstractController
         $this->entityManager->remove($business);
         $this->entityManager->flush();
 
-        // Redirect to myBusinesses route after deleting a business
         return $this->redirectToRoute('app_my_businesses');
     }
 

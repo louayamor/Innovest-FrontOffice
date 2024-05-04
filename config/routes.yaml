@@ -39,5 +39,10 @@ news_sources:
     controller: App\Controller\NewsApiController::getSources
     methods: GET
 
+app_conversation_send:
+    path: /conversation/send/{receiverId}
+    controller: App\Controller\ConversationController::sendMessage
+    methods: ['GET', 'POST']
+
 
 

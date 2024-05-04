@@ -12,11 +12,6 @@
     <div class="container">
         <h1>Business Details</h1>
         <div class="card">
-            {% if business.imageBlob is not null %}
-                <img src="{{ path('app_business_image', {'id': business.id}) }}" alt="Business Image" class="resizable-image">
-            {% else %}
-                <img src="{{ asset('images/company.jpg') }}" alt="Default Image" class="resizable-image">
-            {% endif %}
             <h5 class="card-title text-primary">{{ business.Name }}</h5> <!-- Bigger and colored business name -->
             <p class="card-text"><strong>Owner:</strong> {{ business.Owner.username }}</p>
             <p class="card-text"><strong>Description:</strong> {{ business.Description }}</p>
@@ -34,6 +29,11 @@
         <div class="invest-section">
             <p class="invest-text">Invest in this business</p>
             <a href="{{ path('add_investment', {'Id': business.id}) }}" class="btn btn-primary invest-button">Invest</a>
+        </div>
+
+        <div class="Message-section">
+            <p class="invest-text">Message Owner</p>
+            <a href="{{ path('app_conversation_send', {'ownerId': business.owner.id}) }}" class="btn btn-primary">Message</a>
         </div>
     </div>
 {% endblock %}

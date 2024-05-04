@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Send Message{% endblock %}
+
+{% block body %}
+    <h1>Send Message</h1>
+
+    {# Render the conversation form #}
+    <form method="POST" action="{{ path('app_conversation_send', {'ReceiverId': ReceiverId}) }}">
+        {{ form_start(form) }}
+        {{ form_row(form.Message, { 'attr': {'class': 'form-control'} }) }}
+
+        <button type="submit" class="btn btn-primary">Send</button>
+        {{ form_end(form) }}
+    </form>
+{% endblock %}
