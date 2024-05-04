@@ -13,6 +13,7 @@
             <div class="card-body">
                 <h1 class="card-title">User Profile</h1>
                 <div class="profile-details">
+                    <img src="{{ asset('uploads/' ~ uProfile.profileImage) }}" alt="Profile Image" class="profile-image">
                     <p><strong>First Name:</strong> {{ uProfile.firstName }}</p>
                     <p><strong>Last Name:</strong> {{ uProfile.lastName }}</p>
                     <p><strong>Age:</strong> {{ uProfile.age }}</p>
@@ -29,8 +30,7 @@
                     </ul>
                 </div>
                 <div class="buttons">
-                    <button>Edit Profile</button>
-                    <button>Delete Profile</button>
+                    <a href="{{ path('app_my_businesses') }}" class="btn btn-success">My Businesses</a>
                 </div>
             </div>
         </div>

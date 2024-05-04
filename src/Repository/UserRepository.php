@@ -57,4 +57,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+     * Returns a list of users with isInvestor = 1.
+     *
+     * @return User[]
+     */
+    public function findInvestors(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.isInvestor = :isInvestor')
+            ->setParameter('isInvestor', true)
+            ->getQuery()
+            ->getResult();
+    }
 }

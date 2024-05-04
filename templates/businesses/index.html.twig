@@ -19,9 +19,8 @@
                         <img src="{{ asset('images/company.jpg') }}" alt="Default Image">
                     {% endif %}
                     <h2>{{ business.Name }}</h2>
-                    <p>{{ business.Description }}</p>
                     <p>{{ business.Sector }}</p>
-
+                    <a href="{{ path('app_business_details', {'id': business.id}) }}" class="btn btn-primary">View Details</a>
                 </div>
             {% endfor %}
         </div>

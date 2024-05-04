@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Investors List{% endblock %}
+
+{% block body %}
+    <h1>Investors List</h1>
+    <ul>
+        {% for investor in investors %}
+            <li>{{ investor.username }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

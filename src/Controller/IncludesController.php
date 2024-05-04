@@ -21,7 +21,7 @@ class IncludesController extends AbstractController
     public function index(): Response
     {
         $query = $this->entityManager->createQuery(
-            'SELECT s.name FROM App\Entity\Sector s'
+            'SELECT s.SectorName FROM App\Entity\Sector s'
         );
         $sectorNames = $query->getResult();
 

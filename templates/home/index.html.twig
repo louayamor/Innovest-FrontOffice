@@ -109,51 +109,6 @@
     <!-- end slider section -->
   </div>
 
-  <!-- News section -->
-  <section class="news_section layout_padding-bottom">
-    <div class="container">
-        <div class="heading_container">
-            <h2 class="text-center mb-4">News</h2>
-        </div>
-        <div id="carouselNews" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                {% for article in articles %}
-                <div class="carousel-item {% if loop.first %}active{% endif %}">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-md-8 mx-auto">
-                            <div class="news-card bg-light p-4 rounded shadow">
-                                <div class="news-header">
-                                    <img src="{{ article.randomImage }}" alt="Random Business Image" class="img-fluid rounded">
-                                </div>
-                                <div class="news-body mt-3">
-                                    <h5 class="news-title">{{ article.title }}</h5>
-                                    <p class="news-description">{{ article.description }}</p>
-                                    <div class="news-details">
-                                        <p><strong>Author:</strong> {{ article.author }}</p>
-                                        <p><strong>Published:</strong> {{ article.publishedAt }}</p>
-                                        <p><strong>Source:</strong> {{ article.source.name }}</p>
-                                    </div>
-                                    <a href="{{ article.url }}" target="_blank" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            <a class="carousel-control-prev" href="#carouselNews" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselNews" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-</section>
-<!-- End news section -->
-
 <!-- addbusiness section -->
 
 <section class="about_section layout_padding long_section">
