@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
-class UserProfileController extends AbstractController
+class ProfileController extends AbstractController
 {
     private $entityManager;
 
